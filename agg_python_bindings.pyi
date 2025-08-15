@@ -6,7 +6,9 @@
 
 # TODO: implement the function "load_asciicast_and_return_iterator", return iterator of events (str) with timestamp (float)
 
-def load_asciicast_and_save_png_screenshots(cast_file_loadpath: str, png_write_dir:str=".",png_filename_prefix:str="screenshot", frame_time_min_spacing:float=1.0) -> None:
+# TODO: customize render parameters, like fonts, theme, line height, etc.
+
+def load_asciicast_and_save_png_screenshots(cast_file_loadpath: str, png_write_dir:str=".",png_filename_prefix:str="screenshot", frame_time_min_spacing:float=1.0, verbose=False) -> None:
     """
     Load asciicast file from path, save terminal screenshots separated by frame_time_min_spacing (seconds)
 
