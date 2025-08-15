@@ -1,0 +1,17 @@
+[package]
+name = "agg_python_bindings"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[lib]
+name = "agg_python_bindings"
+crate-type = ["cdylib"]
+
+[dependencies]
+pyo3 = { version="0.25.0" }
+# agg = {git = "https://bgithub.xyz/asciinema/agg.git", rev = "f043c1f"}
+agg = {path = "local_cargo_registry/agg"}
+image = "0.24" # Image decoding/encoding
+rgb = "0.8.52"
+imgref = "1.11.0"

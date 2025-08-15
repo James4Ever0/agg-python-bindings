@@ -2,6 +2,8 @@
 
 This is a Python binding for [agg](https://github.com/asciinema/agg) which is a command line tool for converting asciinema recordings into GIF video files.
 
+It requires a modified version of agg (by making some modules public), which is included in this repository at `local_cargo_registry/agg`.
+
 ## Installation
 
 From PyPI:
