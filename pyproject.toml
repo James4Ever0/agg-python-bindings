@@ -5,11 +5,17 @@ build-backend = "maturin"
 [project]
 name = "agg_python_bindings"
 requires-python = ">=3.8"
+readme = "README.md"
+license = {file = "LICENSE"}
+description = "Python bindings for the Rust graph library 'agg'"
+homepage = "https://github.com/james4ever0/agg-python-bindings"
+repository = "https://github.com/james4ever0/agg-python-bindings"
 classifiers = [
     "Programming Language :: Rust",
     "Programming Language :: Python :: Implementation :: CPython",
     "Programming Language :: Python :: Implementation :: PyPy",
 ]
 dynamic = ["version"]
+
 [tool.maturin]
 features = ["pyo3/extension-module"]

@@ -6,12 +6,13 @@ use pyo3::prelude::*;
 use std::path::Path;
 
 #[pyfunction]
-#[pyo3(signature = (cast_file_loadpath, *, png_write_dir=".".to_string(), png_filename_prefix="screenshot".to_string(), frame_time_min_spacing=1.0))]
+#[pyo3(signature = (cast_file_loadpath, *, png_write_dir=".".to_string(), png_filename_prefix="screenshot".to_string(), frame_time_min_spacing=1.0, verbose=false))]
 fn load_asciicast_and_save_png_screenshots(
     cast_file_loadpath: String,
     png_write_dir: String,
     png_filename_prefix: String,
     frame_time_min_spacing: f64,
+    verbose: bool
 ) -> PyResult<()> {
     assert_is_directory(&png_write_dir);
 
@@ -21,13 +22,16 @@ fn load_asciicast_and_save_png_screenshots(
 
 
     let terminal_size = (header.terminal_size.0, header.terminal_size.1);
+    if verbose {
     // print header
     println!(
         "Header: idie_time_limit={:?}, terminal_size={:?}, theme={:?}",
         header.idle_time_limit, header.terminal_size, header.theme
     );
+
     // print terminal size
     println!("Terminal size: {:?}", terminal_size);
+}
 
     let out_events = agg::asciicast::output(events);
 
@@ -56,19 +60,24 @@ fn load_asciicast_and_save_png_screenshots(
 
     for frame in frames {
         let (time, lines, cursor) = frame;
-        // println!("Rendering frame at time {time:}");
+        if verbose{
+        println!("Rendering frame at time {time:}");}
         if time >= last_frame_time {
             last_frame_time = time + frame_time_min_spacing;
         } else {
-            // println!("Skipping frame due to frame time min spacing {frame_time_min_spacing:} secs");
+            if verbose{
+            println!("Skipping frame due to frame time min spacing {frame_time_min_spacing:} secs");}
             continue;
         }
         let image = renderer.render(lines, cursor);
         let width = image.width();
         let height = image.height();
-        println!("Image width: {width:}, height: {height:}");
         let path = format!("{png_write_dir:}/{png_filename_prefix:}_{time:}.png");
-        println!("Writing image at: {path:}");
+        if verbose{
+            println!("Image width: {width:}, height: {height:}");
+            println!("Writing image at: {path:}");
+        }
+
         save_to_png_rgba(image, &path).unwrap();
     }
     Ok(())
