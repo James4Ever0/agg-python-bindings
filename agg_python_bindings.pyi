@@ -26,7 +26,7 @@ class TerminalEmulator:
     """
     A terminal emulator wrapper over avt, with output feeding, text dumping, cursor location and screenshot.
     """
-    def __init__(cols: int, rows:int):
+    def __init__(self, cols: int, rows:int):
         """
         Create a virtual terminal with parameter determined size.
         
