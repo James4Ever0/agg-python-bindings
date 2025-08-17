@@ -41,4 +41,19 @@ agg_python_bindings.load_asciicast_and_save_png_screenshots(
     png_filename_prefix="screenshot", # optional
     frame_time_min_spacing=1.0 # optional
 )
+
+# Create a virtual terminal, feed string into it, then get states and take a screenshot
+test_input = 'Hello from \x1B[1;3;31mxterm.js\x1B[0m $ '
+screenshot_path = "terminal_screenshot.png"
+terminal = agg_python_bindings.TerminalEmulator(80, 25)
+changed = terminal.feed_str(test_input)
+terminal_dump = terminal.text_raw()
+cursor_states = terminal.get_cursor()
+width, height, success = terminal.screenshot(screenshot_path)
+
+# print a cybergod style terminal text dump with cursor
+for index, it in enumerate(terminal_dump):
+    if index == cursor_states[1]:
+        it = it[:cursor_states[0]] +"<|cursor|>"+it[cursor_states[0]:]
+    print(">", it)
 ```
