@@ -1,5 +1,5 @@
-mod fontdue;
-mod resvg;
+pub mod fontdue;
+pub mod resvg;
 
 use imgref::ImgVec;
 use rgb::{RGB8, RGBA8};

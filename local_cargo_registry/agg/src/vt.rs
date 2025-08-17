@@ -1,4 +1,5 @@
 use log::debug;
+pub use avt;
 
 pub fn frames(
     stdout: impl Iterator<Item = (f64, String)>,
