@@ -51,7 +51,7 @@ terminal_dump = terminal.text_raw()
 cursor_states = terminal.get_cursor()
 width, height, success = terminal.screenshot(screenshot_path)
 
-# print a cybergod style terminal text dump with cursor
+# Print a cybergod style terminal text dump with cursor
 for index, it in enumerate(terminal_dump):
     if index == cursor_states[1]:
         it = it[:cursor_states[0]] +"<|cursor|>"+it[cursor_states[0]:]
