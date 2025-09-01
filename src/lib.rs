@@ -150,6 +150,13 @@ impl TerminalEmulator {
         (cursor.col, cursor.row, cursor.visible)
     }
 
+    fn set_cursor(&mut self, col: usize, row: usize) -> bool {
+        let changed =  (col, row) != (self.vt.cursor().col, self.vt.cursor().row);
+        self.vt.set_cursor(col, row);
+        self.prev_cursor = self.vt.cursor().into();
+        changed
+    }
+
     fn screenshot(&mut self, png_output_path: String) -> (usize, usize, bool) {
         let lines = self.vt.lines();
         let cursor = self.vt.cursor();

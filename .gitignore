@@ -72,3 +72,7 @@ docs/_build/
 
 # Pyenv
 .python-version
+
+*.lock
+Cargo.lock
+Cargo.gmk_n100.lock

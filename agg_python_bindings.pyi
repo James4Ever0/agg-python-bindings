@@ -63,6 +63,18 @@ class TerminalEmulator:
         Returns:
             (col: int, row: int, visible: bool)
         """
+    
+    def set_cursor(self, col: int, row: int) -> bool:
+        """
+        Set the cursor properties.
+
+        Parameters:
+            col: int
+            row: int
+
+        Returns:
+            changed: bool
+        """
         
     def screenshot(self, png_output_path:str) -> tuple[int, int, bool]:
         """
