@@ -1,3 +1,8 @@
+*.lock
+Cargo.lock
+Cargo.gmk_n100.lock
+
+
 /png_output_test
 
 /target
@@ -73,6 +78,10 @@ docs/_build/
 # Pyenv
 .python-version
 
-*.lock
-Cargo.lock
-Cargo.gmk_n100.lock
+test_*
+
+.github
+
+install_and_test.sh
+build_all_versions.sh
+build_wheel.sh
